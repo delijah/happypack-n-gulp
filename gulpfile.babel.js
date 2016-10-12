@@ -18,15 +18,7 @@ gulp.task('webpack', cb => {
         'webpack/hot/only-dev-server'
     );
 
-    const compiler = webpack(webpackDevConfig, (err, stats) => {
-        if (err) {
-            throw new gulpUtil.PluginError('webpack', err);
-        }
-
-        if (stats.compilation.errors.length) {
-            gulpUtil.log('webpack', '\n' + stats.toString({ colors: true }));
-        }
-    });
+    const compiler = webpack(webpackDevConfig);
 
     new WebpackDevServer(compiler,
         webpackDevConfig.devServer
